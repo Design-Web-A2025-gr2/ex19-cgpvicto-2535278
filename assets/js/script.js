@@ -55,11 +55,11 @@ function changeMDP(){
     console.log(mdpScore.score);
     if(nouvMDP.value == confMDP.value){
         msgErrMDP.classList.add("hidden");
-        mdpPareil = true
+        mdpPareil = true;
     } else if(nouvMDP.value != confMDP.value){
         msgErrMDP.classList.remove("hidden");
         msgErrMDP.style.color = "#b00";
-        mdpPareil = false
+        mdpPareil = false;
     }
 
     if(checkCarSpec(nouvMDP.value)){
@@ -148,15 +148,10 @@ function checkCase(mdp){
 function verif(e){
     e.preventDefault();
 
-    if(mdpScore.score >= 3){
-        if(mdpPareil){
-            if(mdpLong){
-                if(carSpec){
-                    if(caseMdp){
-                        formulaire.submit();
-                    }
-                }
-            }
-        }
+    if(mdpScore.score >= 3 && mdpPareil && caseMdp && mdpLong && carSpec){
+        formulaire.submit();
+    } else if(mdpScore.score < 3 || !mdpPareil || !caseMdp || !mdpLong || !carSpec){
+        alert("Critères non remplis");
     }
+    
 }
